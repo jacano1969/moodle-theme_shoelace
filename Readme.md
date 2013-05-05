@@ -84,6 +84,11 @@ Version Information
   5.  Fixed font path issue when Moodle is in a sub-folder.
   6.  Please perform a 'Purge all caches' under 'Home -> Site administration -> Development -> Purge all caches' when upgrading.
 
+5th May 2013 - Version 2.4.0.3 - Beta.
+  1.  Added and adapted image from flexible sections course format.
+  2.  Added and adapted missing move here image from core.
+  3.  Please perform a 'Purge all caches' under 'Home -> Site administration -> Development -> Purge all caches' when upgrading.
+
 Thanks
 ======
 My thanks go to all the creators and participants of the Bootstrap theme:
@@ -93,6 +98,6 @@ And again to Mary Evans for the 'Clean' theme.
 
 Me
 ==
-G J Barnard MSc. BSc(Hons)(Sndw). MBCS. CEng. CITP. PGCE. - 4th May 2013.
+G J Barnard MSc. BSc(Hons)(Sndw). MBCS. CEng. CITP. PGCE. - 5th May 2013.
 Moodle profile: http://moodle.org/user/profile.php?id=442195.
 Web profile   : http://about.me/gjbarnard
