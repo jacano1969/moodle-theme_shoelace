@@ -36,11 +36,6 @@ $hassidepost = (empty($PAGE->layout_options['noblocks']) && $PAGE->blocks->regio
 $showsidepre = ($hassidepre && !$PAGE->blocks->region_completely_docked('side-pre', $OUTPUT));
 $showsidepost = ($hassidepost && !$PAGE->blocks->region_completely_docked('side-post', $OUTPUT));
 
-$hasfootnote = (!empty($PAGE->theme->settings->footnote));
-$navbar_inverse = '';
-if (!empty($PAGE->theme->settings->invert)) {
-    $navbar_inverse = 'navbar-inverse';
-}
 $custommenu = $OUTPUT->custom_menu();
 $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
 
@@ -86,11 +81,11 @@ echo $OUTPUT->doctype() ?>
 
 <?php echo $OUTPUT->standard_top_of_body_html() ?>
 
-<header role="banner" class="navbar <?php echo $navbar_inverse ?> navbar-fixed-top">
+<header role="banner" class="navbar navbar-fixed-top">
     <nav role="navigation" class="navbar-inner">
         <div class="container-fluid">
             <a class="brand" href="<?php echo $CFG->wwwroot;?>"><?php echo $SITE->shortname; ?></a>
-            <a class="btn btn-navbar" data-toggle="workaround-collapse" data-target=".nav-collapse">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -116,7 +111,6 @@ echo $OUTPUT->doctype() ?>
         <nav class="breadcrumb-button"><?php echo $PAGE->button; ?></nav>
         <?php echo $OUTPUT->navbar(); ?>
     <?php } ?>
-
     <h1><?php echo $PAGE->heading ?></h1>
 
     <?php if (!empty($courseheader)) { ?>
@@ -130,13 +124,13 @@ echo $OUTPUT->doctype() ?>
 <?php if ($layout === 'pre-and-post') { ?>
     <div id="region-bs-main-and-pre" class="span9">
     <div class="row-fluid">
-    <section id="region-main" class="span8 pull-right">
+    <section id="region-bs-main" class="span8 pull-right">
 <?php } else if ($layout === 'side-post-only') { ?>
-    <section id="region-main" class="span9">
+    <section id="region-bs-main" class="span9">
 <?php } else if ($layout === 'side-pre-only') { ?>
-    <section id="region-main" class="span9 pull-right">
+    <section id="region-bs-main" class="span9 pull-right">
 <?php } else if ($layout === 'content-only') { ?>
-    <section id="region-main" class="span12">
+    <section id="region-bs-main" class="span12">
 <?php } ?>
 
 
@@ -148,37 +142,29 @@ echo $OUTPUT->doctype() ?>
 
 <?php if ($layout !== 'content-only') {
           if ($layout === 'pre-and-post') { ?>
-            <aside class="span4 desktop-first-column">
+            <aside id="region-pre" class="span4 block-region desktop-first-column region-content">
     <?php } else if ($layout === 'side-pre-only') { ?>
-            <aside class="span3 desktop-first-column">
+            <aside id="region-pre" class="span3 block-region desktop-first-column region-content">
     <?php } ?>
-          <div id="region-pre" class="block-region">
-          <div class="region-content">
           <?php
                 if (!right_to_left()) {
                     echo $OUTPUT->blocks_for_region('side-pre');
                 } else if ($hassidepost) {
                     echo $OUTPUT->blocks_for_region('side-post');
                 }
-          ?>
-          </div>
-          </div>
-          </aside>
+            ?>
+            </aside>
     <?php if ($layout === 'pre-and-post') {
           ?></div></div><?php // Close row-fluid and span9.
    }
 
     if ($layout === 'side-post-only' OR $layout === 'pre-and-post') { ?>
-        <aside class="span3">
-        <div id="region-post" class="block-region">
-        <div class="region-content">
+        <aside id="region-post" class="span3 block-region region-content">
         <?php if (!right_to_left()) {
                   echo $OUTPUT->blocks_for_region('side-post');
               } else {
                   echo $OUTPUT->blocks_for_region('side-pre');
               } ?>
-        </div>
-        </div>
         </aside>
     <?php } ?>
 <?php } ?>
@@ -186,15 +172,6 @@ echo $OUTPUT->doctype() ?>
 
 <footer id="page-footer">
     <p class="helplink"><?php echo page_doc_link(get_string('moodledocslink')) ?></p>
-
-    <?php
-if ($hasfootnote) { ?>
-   <div class="footnote text-center">
-   <?php echo $PAGE->theme->settings->footnote; ?>
-   </div>
-    <?php
-} ?>
-
     <?php echo $OUTPUT->standard_footer_html(); ?>
 </footer>
 
